@@ -126,7 +126,7 @@ function handleAddCardSubmit(evt) {
 }
 
 // Create the submit listener.
-addCardFormElement.addEventListener('submit', handleAddCardSubmit);
+newPostEl.addEventListener('submit', handleAddCardSubmit);
 
 
 initialCards.forEach(function (card) {
