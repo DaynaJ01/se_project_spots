@@ -53,6 +53,13 @@ const newPostImageInput = newPostModal.querySelector("#card-image-input");
 const newPostCaptionInput = newPostModal.querySelector("#profile-description-input");
 
 
+function openModal(modal){
+    modal.classList.add("modal_is-opened");
+}
+
+function closeModal(modal){
+    modal.classList.remove("modal_is-opened");
+}
 
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
@@ -64,22 +71,27 @@ const newPostCaption = newPostCaptionInput.value;
 
 
 editProfileBtn.addEventListener("click", function () {
-    editProfileModal.classList.add("modal_is-opened");
+    //editProfileModal.classList.add("modal_is-opened");
     editProfileNameInput.value = profileNameEl.textContent;
     editProfileDescriptionInput.value = profileDescriptionEl.textContent;
+    openModal(editProfileModal);
 
 });
 
 editProfileCloseBtn.addEventListener("click", function () {
-    editProfileModal.classList.remove("modal_is-opened");
+    //editProfileModal.classList.remove("modal_is-opened");
+    closeModal(editProfileModal);
 });
 
 newPostBtn.addEventListener("click", function () {
-    newPostModal.classList.add("modal_is-opened");
+    //newPostModal.classList.add("modal_is-opened");
+    openModal(newPostModal);
 });
 
 newPostCloseBtn.addEventListener("click", function () {
-    newPostModal.classList.remove("modal_is-opened");
+    //newPostModal.classList.remove("modal_is-opened");
+    closeModal(newPostModal);
+
 });
 
 function handleProfileFormSubmit(evt) {
@@ -90,7 +102,8 @@ function handleProfileFormSubmit(evt) {
 
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;
 
-  editProfileModal.classList.remove("modal_is-opened");
+  //editProfileModal.classList.remove("modal_is-opened");
+  closeModal(editProfileModal);
 }
 
 // Set the submit listener.
@@ -105,7 +118,8 @@ function handleProfileFormSubmit(evt) {
 
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;
 
-  editProfileModal.classList.remove("modal_is-opened");
+  //editProfileModal.classList.remove("modal_is-opened");
+  closeModal(editProfileModal);
 }
 
 // Set the submit listener.
@@ -122,7 +136,8 @@ function handleAddCardSubmit(evt) {
 
 
   // Close the modal.
-  newPostModal.classList.remove("modal_is-opened");
+  //newPostModal.classList.remove("modal_is-opened");
+  closeModal(newPostModal);
 }
 
 // Create the submit listener.
