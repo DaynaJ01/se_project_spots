@@ -50,7 +50,7 @@ const newPostModal = document.querySelector("#new-post-modal");
 
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 
-const newPostEl = newPostModal.querySelector(".modal__form");
+const newPostFormEl = newPostModal.querySelector(".modal__form");
 
 const newPostImageInput = newPostModal.querySelector("#card-image-input");
 
@@ -108,7 +108,7 @@ function getCardElement(data) {
     cardImageEl.addEventListener("click", () => {
         previewImageEl.src = data.link;
         previewImageEl.alt = data.name;
-        previewImageEl.textContent = data.name;
+        previewImageCaption.textContent = data.name;
         openModal(previewModal);
     })
 
@@ -117,7 +117,6 @@ function getCardElement(data) {
 
 
 editProfileBtn.addEventListener("click", function () {
-    //editProfileModal.classList.add("modal_is-opened");
     editProfileNameInput.value = profileNameEl.textContent;
     editProfileDescriptionInput.value = profileDescriptionEl.textContent;
     openModal(editProfileModal);
@@ -125,47 +124,37 @@ editProfileBtn.addEventListener("click", function () {
 });
 
 editProfileCloseBtn.addEventListener("click", function () {
-    //editProfileModal.classList.remove("modal_is-opened");
     closeModal(editProfileModal);
 });
 
 newPostBtn.addEventListener("click", function () {
-    //newPostModal.classList.add("modal_is-opened");
     openModal(newPostModal);
 });
 
 newPostCloseBtn.addEventListener("click", function () {
-    //newPostModal.classList.remove("modal_is-opened");
     closeModal(newPostModal);
 
 });
 
 
-// Set the submit listener.
-editProfileFormEl.addEventListener('submit', handleProfileFormSubmit);
-
-
 function handleProfileFormSubmit(evt) {
-  // Prevent default browser behavior.
   evt.preventDefault(); 
 
   profileNameEl.textContent = editProfileNameInput.value;
 
   profileDescriptionEl.textContent = editProfileDescriptionInput.value;
 
-  //editProfileModal.classList.remove("modal_is-opened");
   closeModal(editProfileModal);
 }
 
-// Set the submit listener.
 editProfileFormEl.addEventListener('submit', handleProfileFormSubmit);
 
 
 function handleAddCardSubmit(evt) {
-  // Prevent default browser behavior.
+  
   evt.preventDefault(); 
  
-  // Log both input values to the console.
+  
   const newPostImageLink = newPostImageInput.value;
   const newPostCaptionLink = newPostCaptionInput.value;
 
@@ -175,8 +164,7 @@ function handleAddCardSubmit(evt) {
   }
 
   
-  //console.log(newPostImageLink.value);
-  //console.log(newPostCaptionLink.value);
+
   const cardElement = getCardElement({
     name: newPostCaptionLink,
     link: newPostImageLink,
@@ -184,13 +172,14 @@ function handleAddCardSubmit(evt) {
   cardsList.prepend(cardElement);
 
 
-  // Close the modal.
-  //newPostModal.classList.remove("modal_is-opened");
+
   closeModal(newPostModal);
+
+  newPostEl.reset(newPostModal);
 }
 
-// Create the submit listener.
-newPostEl.addEventListener('submit', handleAddCardSubmit);
+
+newPostFormEl.addEventListener('submit', handleAddCardSubmit);
 
 
 initialCards.forEach(function (item) {
